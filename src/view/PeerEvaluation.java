@@ -2,7 +2,7 @@ import javax.swing.*;
 import java.io.*;
 import java.awt.event.*;
 
-public class PeerEvaluation
+public class Example
 {
     public static void main(String args[])
     {
@@ -67,11 +67,13 @@ public class PeerEvaluation
                 //Checks
                 if(teamMembersSelectedItem.equals(" "))
                 {
-                    System.out.println("Please choose the number of team members.");
+                    JOptionPane.showMessageDialog(new JFrame(), "Please choose the number of team members.", "Error",
+                            JOptionPane.ERROR_MESSAGE);
                 }
                 else if (scoresEnteredSelectedItem.equals(" "))
                 {
-                    System.out.println("Please choose if the scores were entered previously or not");
+                    JOptionPane.showMessageDialog(new JFrame(), "Please choose if the scores were entered previously or not", "Error",
+                            JOptionPane.ERROR_MESSAGE);
                 }
                 else
                 {
