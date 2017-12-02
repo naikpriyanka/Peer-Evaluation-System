@@ -53,7 +53,10 @@ public class Evaluation{
                    continue;
                }
                //TODO: Generate random marks
-               stuff[i][j]="5";
+
+               Random rand = new Random();
+               int  n = rand.nextInt(5) + 1;
+               stuff[i][j]= Integer.toString(n);
            }
        }
        return stuff;
