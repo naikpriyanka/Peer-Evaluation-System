@@ -1,16 +1,15 @@
 import javax.swing.*;
-import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.util.Random;
 import java.util.*;
-import java.util.List;
 
-public class Evaluation{
+public class Evaluation {
+
     int memberCount;
     boolean previousScores;
 
-    Evaluation(int count,boolean flag)
-    {
+    public Evaluation(int count,boolean flag) {
         this.memberCount = count;
         this.previousScores = flag;
     }
