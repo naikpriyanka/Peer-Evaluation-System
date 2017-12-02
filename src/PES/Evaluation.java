@@ -33,8 +33,16 @@ public class Evaluation {
        String[] columnNames = getColumnNames();
        String[][] data = generateScores(memberCount,previousScores);
 
-       //Generate the table
-       JTable table = new JTable(data, columnNames);
+       //Generate the table and make the Name column uneditable
+       JTable table = new JTable(data, columnNames)
+       {
+           @Override
+           public boolean isCellEditable(int row, int column)
+           {
+               return column == 1 || column == 2 || column == 3;
+           }
+       };
+
 
        //Create a submit button
        JButton submitButton = new JButton("Submit");
