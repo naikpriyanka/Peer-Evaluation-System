@@ -32,6 +32,7 @@ public class PeerEvaluation {
         JComboBox<Integer> teamMembersCombo = new JComboBox<>(teamMemberOptions);
         teamMembersCombo.setSelectedIndex(0);
 
+        //Create the radio buttons
         JRadioButton yesOption = new JRadioButton("Yes");
         JRadioButton noOption = new JRadioButton("No", true);
         ButtonGroup decisionGroup = new ButtonGroup();
@@ -62,17 +63,21 @@ public class PeerEvaluation {
         frame.setVisible(true);
 
 
-        //Add an action listener
+        //Action listener to the submit button
         submitButton.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
+                //Get the number of team members
                 int teamMembers = (int) teamMembersCombo.getSelectedItem();
                 boolean previousScoresEntered = false;
+
+                //Get the selected option
                 if (yesOption.isSelected()) {
                     previousScoresEntered = true;
                 } else if (noOption.isSelected()) {
                     previousScoresEntered = false;
                 }
+
                 //Close the present window
                 frame.setVisible(false);
                 frame.dispose();

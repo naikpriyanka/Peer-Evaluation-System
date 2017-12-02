@@ -1,9 +1,14 @@
 package PES;
 
-import java.util.Arrays;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
+
+/*
+* The method normalize() takes in the raw score and normalizes them.
+* The normalized scores are returned as a Map with key as name and
+* value as normalized score.
+* */
 
 public class Normalizer {
     Normalizer()

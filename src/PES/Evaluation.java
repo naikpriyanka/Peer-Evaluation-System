@@ -1,31 +1,35 @@
 package PES;
-import javafx.scene.control.ComboBox;
 
 import javax.swing.*;
-import javax.swing.table.TableCellEditor;
 import javax.swing.table.TableColumn;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.util.*;
-import java.util.List;
 
 public class Evaluation{
+    //Get the number of people from the previous window
     int memberCount;
+
+    //Indicates if the previous were entered previously
     boolean previousScores;
 
+    //Constructor
     Evaluation(int count,boolean flag)
     {
         this.memberCount = count;
         this.previousScores = flag;
     }
 
+    //For debugging purposes
    public static void main(String args[])
    {
         Evaluation eval = new Evaluation(5,true);
         eval.start();
    }
 
+   //Contains the GUI and logic
    public void start() {
+
        //Create the frame
        JFrame frame = new JFrame("Evaluation");
        frame.setSize(500, 500);
@@ -41,10 +45,17 @@ public class Evaluation{
            @Override
            public boolean isCellEditable(int row, int column)
            {
+               //Since column 0 is names, make only column 1,2 and 3 editable.
                return column == 1 || column == 2 || column == 3;
            }
        };
 
+       /*The following code makes sure that the user will choose the input from
+       * a combo box instead of entering the digits.
+       * This restricts the user to certain option making it hard for invalid option to enter
+       * the program.*/
+
+       //Create the combobox with options
        JComboBox comboBox = new JComboBox();
        comboBox.addItem(" ");
        comboBox.addItem("1");
@@ -54,7 +65,7 @@ public class Evaluation{
        comboBox.addItem("5");
 
 
-       //Make all the column editing as dropdown
+       //Make all the columns editable by comboboxes only
        TableColumn column1 = table.getColumnModel().getColumn(1);
        column1.setCellEditor(new DefaultCellEditor(comboBox));
 
@@ -80,57 +91,70 @@ public class Evaluation{
        frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 
 
-       //Add an action listener
+       //Add an action listener to submit button
        submitButton.addActionListener(new ActionListener() {
            @Override
            public void actionPerformed(ActionEvent e) {
 
-               //TODO:Collect all the scores
+               /*Collect all the scores from the table. Store them in a Map.
+               * Each entry of the map contains the Name as key and a List of scores as value.
+               * */
                Map<String,List<Integer>> rawScoresMap = new TreeMap<String, List<Integer>>();
 
                for (int i=0;i<table.getRowCount();i++)
                {
-                   List<Integer> scores = new LinkedList<Integer>();
+                   //These two components are extracted from each row of the table.
+                   List<Integer> rawScores = new LinkedList<Integer>();
                    String name = null;
+
                    for(int j=0;j<table.getColumnCount();j++)
                    {
+                       //All values of 0th column are names. Store them as strings.
                        if(j==0)
                        {
+                           //Get the name
                            name = (String) table.getValueAt(i,j);
                            continue;
                        }
+
+                       //Get the scores. Parse them to Integers before storing in map.
                        int score = Integer.parseInt((String) table.getValueAt(i,j));
-                       scores.add(score);
+                       rawScores.add(score);
                    }
-                   rawScoresMap.put(name,scores);
+                   //Put the name and list of scores in the map.
+                   rawScoresMap.put(name,rawScores);
                }
 
                //For debuggin purposes
-//               for (String key : rawScoresMap.keySet())
-//               {
-//                   System.out.println(key+" "+rawScoresMap.get(key));
-//               }
+               for (String key : rawScoresMap.keySet())
+               {
+                   System.out.println(key+" "+rawScoresMap.get(key));
+               }
 
                //TODO:Normalize the scores
                Normalizer normalizer = new Normalizer();
                Map<String, Float> normalizedScoresMap = normalizer.normalize(rawScoresMap);
 
 
-               //Move to the next screen
+               //Close the current screen
                frame.setVisible(false);
                frame.dispose();
+
+               //Move to the next screen
                FinalDisplay finalDisplay = new FinalDisplay(normalizedScoresMap);
                finalDisplay.start();
            }
        });
    }
 
+   //The column headings to be displyed in the table
    private String[] getColumnNames()
    {
        String[] columnNames={"Name","Column #1","Column #2","Column #3"};
        return columnNames;
    }
 
+   //Generates random scores
    private String[][] generateScores(int count, boolean previousScores)
    {
        String[][] stuff = new String[count][4];
