@@ -58,6 +58,7 @@ public class FinalDisplay {
         //Sizes and Positioning
         table.setBounds(0, 10, 500, 250);
         submitButton.setBounds(100, 300, 100, 25);
+        table.setRowHeight(25);
 
         //Add components to the frame
         frame.add(submitButton);

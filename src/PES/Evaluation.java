@@ -81,6 +81,7 @@ public class Evaluation{
        //Sizes and Positioning
        submitButton.setBounds(100, 300, 100, 25);
        table.setBounds(0, 10, 500, 250);
+       table.setRowHeight(25);
 
        //Add components to the frame
        frame.add(submitButton);
