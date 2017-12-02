@@ -1,6 +1,7 @@
 package PES;
 
 import javax.swing.*;
+import javax.swing.table.JTableHeader;
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
@@ -51,18 +52,21 @@ public class FinalDisplay {
         //Make the table uneditable
         table.setEnabled(false);
 
-
+        //Table Header
+        JTableHeader header = table.getTableHeader();
 
         //The submit button
         JButton submitButton = new JButton("Ok");
 
         //Sizes and Positioning
-        table.setBounds(0, 10, 500, 250);
+        table.setBounds(0, 40, 500, 250);
         submitButton.setBounds(100, 300, 100, 25);
+        header.setBounds(0,0,500,40);
         table.setRowHeight(25);
 
         //Add components to the frame
         frame.add(submitButton);
+        frame.add(header);
         frame.add(table);
 
         //Centers the window

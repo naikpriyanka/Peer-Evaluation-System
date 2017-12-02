@@ -1,6 +1,8 @@
 package PES;
 
 import javax.swing.*;
+import javax.swing.table.DefaultTableModel;
+import javax.swing.table.JTableHeader;
 import javax.swing.table.TableColumn;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
@@ -43,6 +45,7 @@ public class Evaluation{
        String[] columnNames = getColumnNames();
        String[][] data = generateScores(memberCount,previousScores);
 
+
        //Generate the table and make the Name column uneditable
        JTable table = new JTable(data,columnNames)
        {
@@ -81,13 +84,23 @@ public class Evaluation{
        //Create a submit button
        JButton submitButton = new JButton("Submit");
 
+       //Table Header
+       JTableHeader header = table.getTableHeader();
+
        //Sizes and Positioning
        submitButton.setBounds(100, 300, 100, 25);
-       table.setBounds(0, 10, 500, 250);
+       table.setBounds(0, 40, 500, 250);
+       header.setBounds(0,0,500,40);
        table.setRowHeight(25);
+
+       //JPanel
+       JPanel panel = new JPanel();
+       panel.add(submitButton);
+       panel.add(new JScrollPane(table));
 
        //Add components to the frame
        frame.add(submitButton);
+       frame.add(header);
        frame.add(table);
 
        //Centers the window
