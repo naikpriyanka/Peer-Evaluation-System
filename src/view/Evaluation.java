@@ -20,28 +20,30 @@ public class Evaluation{
    }
 
    public void start() {
+       //Create the frame
        JFrame frame = new JFrame("Evaluation");
        frame.setSize(500, 500);
        frame.setLayout(null);
 
+       //Prepare the data to be inserted in table
        String[] columnNames = getColumnNames();
        String[][] data = generateScores(memberCount);
 
+       //Generate the table
        JTable table = new JTable(data, columnNames);
-       table.setEnabled(false);
 
-//       table.setFillsViewportHeight(true);
+       //Create a submit button
+       JButton submitButton = new JButton("Submit");
 
+       //Sizes and Positioning
+       submitButton.setBounds(100, 300, 100, 25);
        table.setBounds(0, 10, 500, 250);
 
-
-       //The submit button
-       JButton submitButton = new JButton("Submit");
-       submitButton.setBounds(100, 300, 100, 25);
-
-
+       //Add components to the frame
        frame.add(submitButton);
        frame.add(table);
+
+       //Make the frame visible
        frame.setVisible(true);
        frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 
@@ -50,11 +52,17 @@ public class Evaluation{
        submitButton.addActionListener(new ActionListener() {
            @Override
            public void actionPerformed(ActionEvent e) {
+               //TODO:Normalize the scores
+
                //TODO: Move to the next screen
+               frame.setVisible(false);
+               frame.dispose();
+               FinalDisplay finalDisplay = new FinalDisplay();
+               finalDisplay.start();
            }
        });
    }
-    
+
    private String[] getColumnNames()
    {
        String[] columnNames={"Name","Column #1","Column #2","Column #3"};

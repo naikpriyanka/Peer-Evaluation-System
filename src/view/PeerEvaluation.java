@@ -77,12 +77,11 @@ public class PeerEvaluation
                 }
                 else
                 {
-                    //TODO:Proceed to the next window
-                    System.out.println(teamMembersSelectedItem+" "+scoresEnteredSelectedItem);
-
+                    //Close the present window
                     frame.setVisible(false);
                     frame.dispose();
 
+                    //Proceed to the next window
                     Evaluation eval = new Evaluation(Integer.parseInt(teamMembersSelectedItem));
                     eval.start();
                 }
