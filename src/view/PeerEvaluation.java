@@ -64,6 +64,16 @@ public class PeerEvaluation
                 String teamMembersSelectedItem = (String) teamMembers.getSelectedItem();
                 String scoresEnteredSelectedItem = (String) scoresEntered.getSelectedItem();
 
+                boolean previousScores;
+                if(scoresEnteredSelectedItem.equals("Yes"))
+                {
+                    previousScores = true;
+                }
+                else
+                {
+                    previousScores = false;
+                }
+
                 //Checks
                 if(teamMembersSelectedItem.equals(" "))
                 {
@@ -82,7 +92,7 @@ public class PeerEvaluation
                     frame.dispose();
 
                     //Proceed to the next window
-                    Evaluation eval = new Evaluation(Integer.parseInt(teamMembersSelectedItem));
+                    Evaluation eval = new Evaluation(Integer.parseInt(teamMembersSelectedItem),previousScores);
                     eval.start();
                 }
             }

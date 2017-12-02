@@ -6,16 +6,19 @@ import java.util.*;
 import java.util.List;
 
 public class Evaluation{
-    static int memberCount;
-    Evaluation(int count)
+    int memberCount;
+    boolean previousScores;
+
+    Evaluation(int count,boolean flag)
     {
-        memberCount = count;
+        this.memberCount = count;
+        this.previousScores = flag;
     }
 
    public static void main(String args[])
    {
        //TODO: Pass in the params
-        Evaluation eval = new Evaluation(5);
+        Evaluation eval = new Evaluation(5,false);
         eval.start();
    }
 
@@ -27,7 +30,7 @@ public class Evaluation{
 
        //Prepare the data to be inserted in table
        String[] columnNames = getColumnNames();
-       String[][] data = generateScores(memberCount);
+       String[][] data = generateScores(memberCount,previousScores);
 
        //Generate the table
        JTable table = new JTable(data, columnNames);
@@ -69,7 +72,7 @@ public class Evaluation{
        return columnNames;
    }
 
-   private String[][] generateScores(int count)
+   private String[][] generateScores(int count, boolean previousScores)
    {
        String[][] stuff = new String[count][4];
 
@@ -84,11 +87,17 @@ public class Evaluation{
                    stuff[i][j] = "Name";
                    continue;
                }
-               //TODO: Generate random marks
 
-               Random rand = new Random();
-               int  n = rand.nextInt(5) + 1;
-               stuff[i][j]= Integer.toString(n);
+               if(previousScores)
+               {
+                   Random rand = new Random();
+                   int  n = rand.nextInt(5) + 1;
+                   stuff[i][j] = Integer.toString(n);
+               }
+               else
+               {
+                   stuff[i][j] =  Integer.toString(0);
+               }
            }
        }
        return stuff;
