@@ -64,15 +64,7 @@ public class PeerEvaluation
                 String teamMembersSelectedItem = (String) teamMembers.getSelectedItem();
                 String scoresEnteredSelectedItem = (String) scoresEntered.getSelectedItem();
 
-                boolean previousScores;
-                if(scoresEnteredSelectedItem.equals("Yes"))
-                {
-                    previousScores = true;
-                }
-                else
-                {
-                    previousScores = false;
-                }
+                boolean previousScores = scoresEnteredSelectedItem.equals("Yes") ? true : false;
 
                 //Checks
                 if(teamMembersSelectedItem.equals(" "))
