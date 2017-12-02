@@ -55,13 +55,48 @@ public class Evaluation{
        submitButton.addActionListener(new ActionListener() {
            @Override
            public void actionPerformed(ActionEvent e) {
-               //TODO:Normalize the scores
 
-               //TODO: Move to the next screen
+               //TODO:Collect all the scores
+               Map<String,List<Integer>> rawScoresMap = new HashMap<String, List<Integer>>();
+
+               for (int i=0;i<table.getRowCount();i++)
+               {
+                   List<Integer> scores = new LinkedList<Integer>();
+                   String name = null;
+                   for(int j=0;j<table.getColumnCount();j++)
+                   {
+                       if(j==0)
+                       {
+                           name = (String) table.getValueAt(i,j);
+                           continue;
+                       }
+                       int score = Integer.parseInt((String) table.getValueAt(i,j));
+                       scores.add(score);
+                   }
+                   rawScoresMap.put(name,scores);
+               }
+
+
+               //Print out the map for debugging purposes
+               for(String key: rawScoresMap.keySet())
+               {
+                   List<Integer> a = rawScoresMap.get(key);
+
+                   System.out.println(key + " - " + Arrays.toString(a.toArray()));
+               }
+
+               System.out.println();
+
+               //TODO:Normalize the scores
+//               Normalizer normalizer = new Normalizer();
+//               Map<String, Float> normalizedScores = normalizer.normalize();
+
+
+               //Move to the next screen
                frame.setVisible(false);
                frame.dispose();
-               FinalDisplay finalDisplay = new FinalDisplay();
-               finalDisplay.start();
+//               FinalDisplay finalDisplay = new FinalDisplay(normalizedScores);
+//               finalDisplay.start();
            }
        });
    }
@@ -84,7 +119,7 @@ public class Evaluation{
                if(j == 0)
                {
                    //TODO: Generate random name
-                   stuff[i][j] = "Name";
+                   stuff[i][j] = "Name #"+i;
                    continue;
                }
 
