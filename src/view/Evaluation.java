@@ -6,10 +6,16 @@ import java.util.*;
 import java.util.List;
 
 public class Evaluation{
+    static int memberCount;
+    Evaluation(int count)
+    {
+        memberCount = count;
+    }
+
    public static void main(String args[])
    {
        //TODO: Pass in the params
-        Evaluation eval = new Evaluation();
+        Evaluation eval = new Evaluation(5);
         eval.start();
    }
 
@@ -19,7 +25,7 @@ public class Evaluation{
        frame.setSize(500,500);
 
        String[] columnNames = getColumnNames();
-       String[][] data = generateScores(3);
+       String[][] data = generateScores(memberCount);
 
        JTable table = new JTable(data,columnNames);
        JScrollPane pane = new JScrollPane(table);

@@ -2,7 +2,7 @@ import javax.swing.*;
 import java.io.*;
 import java.awt.event.*;
 
-public class Example
+public class PeerEvaluation
 {
     public static void main(String args[])
     {
@@ -79,6 +79,12 @@ public class Example
                 {
                     //TODO:Proceed to the next window
                     System.out.println(teamMembersSelectedItem+" "+scoresEnteredSelectedItem);
+
+                    frame.setVisible(false);
+                    frame.dispose();
+
+                    Evaluation eval = new Evaluation(Integer.parseInt(teamMembersSelectedItem));
+                    eval.start();
                 }
             }
         });
