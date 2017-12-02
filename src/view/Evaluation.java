@@ -77,26 +77,16 @@ public class Evaluation{
                }
 
 
-               //Print out the map for debugging purposes
-               for(String key: rawScoresMap.keySet())
-               {
-                   List<Integer> a = rawScoresMap.get(key);
-
-                   System.out.println(key + " - " + Arrays.toString(a.toArray()));
-               }
-
-               System.out.println();
-
                //TODO:Normalize the scores
-//               Normalizer normalizer = new Normalizer();
-//               Map<String, Float> normalizedScores = normalizer.normalize();
+               Normalizer normalizer = new Normalizer();
+               Map<String, Float> normalizedScoresMap = normalizer.normalize(rawScoresMap);
 
 
                //Move to the next screen
                frame.setVisible(false);
                frame.dispose();
-//               FinalDisplay finalDisplay = new FinalDisplay(normalizedScores);
-//               finalDisplay.start();
+               FinalDisplay finalDisplay = new FinalDisplay(normalizedScoresMap);
+               finalDisplay.start();
            }
        });
    }
