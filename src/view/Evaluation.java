@@ -19,24 +19,42 @@ public class Evaluation{
         eval.start();
    }
 
-   public void start()
-   {
+   public void start() {
        JFrame frame = new JFrame("Evaluation");
-       frame.setSize(500,500);
+       frame.setSize(500, 500);
+       frame.setLayout(null);
 
        String[] columnNames = getColumnNames();
        String[][] data = generateScores(memberCount);
 
-       JTable table = new JTable(data,columnNames);
-       JScrollPane pane = new JScrollPane(table);
-       table.setFillsViewportHeight(true);
+       JTable table = new JTable(data, columnNames);
+       table.setEnabled(false);
 
-       frame.add(pane);
+//       table.setFillsViewportHeight(true);
+
+       table.setBounds(0, 10, 500, 250);
+
+
+       //The submit button
+       JButton submitButton = new JButton("Submit");
+       submitButton.setBounds(100, 300, 100, 25);
+
+
+       frame.add(submitButton);
+       frame.add(table);
        frame.setVisible(true);
        frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-   }
 
-   //TODO:Randomly generate the names and scores
+
+       //Add an action listener
+       submitButton.addActionListener(new ActionListener() {
+           @Override
+           public void actionPerformed(ActionEvent e) {
+               //TODO: Move to the next screen
+           }
+       });
+   }
+    
    private String[] getColumnNames()
    {
        String[] columnNames={"Name","Column #1","Column #2","Column #3"};
