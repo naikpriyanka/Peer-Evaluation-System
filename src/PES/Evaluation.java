@@ -1,25 +1,27 @@
 package PES;
+import javafx.scene.control.ComboBox;
 
 import javax.swing.*;
+import javax.swing.table.TableCellEditor;
+import javax.swing.table.TableColumn;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
-import java.util.Random;
 import java.util.*;
+import java.util.List;
 
-public class Evaluation {
-
+public class Evaluation{
     int memberCount;
     boolean previousScores;
 
-    public Evaluation(int count,boolean flag) {
+    Evaluation(int count,boolean flag)
+    {
         this.memberCount = count;
         this.previousScores = flag;
     }
 
    public static void main(String args[])
    {
-       //TODO: Pass in the params
-        Evaluation eval = new Evaluation(5,false);
+        Evaluation eval = new Evaluation(5,true);
         eval.start();
    }
 
@@ -34,7 +36,7 @@ public class Evaluation {
        String[][] data = generateScores(memberCount,previousScores);
 
        //Generate the table and make the Name column uneditable
-       JTable table = new JTable(data, columnNames)
+       JTable table = new JTable(data,columnNames)
        {
            @Override
            public boolean isCellEditable(int row, int column)
@@ -43,6 +45,24 @@ public class Evaluation {
            }
        };
 
+       JComboBox comboBox = new JComboBox();
+       comboBox.addItem(" ");
+       comboBox.addItem("1");
+       comboBox.addItem("2");
+       comboBox.addItem("3");
+       comboBox.addItem("4");
+       comboBox.addItem("5");
+
+
+       //Make all the column editing as dropdown
+       TableColumn column1 = table.getColumnModel().getColumn(1);
+       column1.setCellEditor(new DefaultCellEditor(comboBox));
+
+       TableColumn column2 = table.getColumnModel().getColumn(2);
+       column2.setCellEditor(new DefaultCellEditor(comboBox));
+
+       TableColumn column3 = table.getColumnModel().getColumn(3);
+       column3.setCellEditor(new DefaultCellEditor(comboBox));
 
        //Create a submit button
        JButton submitButton = new JButton("Submit");
@@ -66,7 +86,7 @@ public class Evaluation {
            public void actionPerformed(ActionEvent e) {
 
                //TODO:Collect all the scores
-               Map<String,List<Integer>> rawScoresMap = new HashMap<String, List<Integer>>();
+               Map<String,List<Integer>> rawScoresMap = new TreeMap<String, List<Integer>>();
 
                for (int i=0;i<table.getRowCount();i++)
                {
@@ -85,6 +105,11 @@ public class Evaluation {
                    rawScoresMap.put(name,scores);
                }
 
+               //For debuggin purposes
+//               for (String key : rawScoresMap.keySet())
+//               {
+//                   System.out.println(key+" "+rawScoresMap.get(key));
+//               }
 
                //TODO:Normalize the scores
                Normalizer normalizer = new Normalizer();
