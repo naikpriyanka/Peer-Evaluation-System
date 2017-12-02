@@ -63,8 +63,13 @@ public class FinalDisplay {
         frame.add(submitButton);
         frame.add(table);
 
-        //Display the frame
+        //Centers the window
+        frame.setLocationRelativeTo(null);
+
+        //Set the frame to be visible
         frame.setVisible(true);
+
+        //Specify what happens when close button is clicked
         frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 
         //Add an action listener to the submit button

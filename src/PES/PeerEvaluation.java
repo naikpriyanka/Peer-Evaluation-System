@@ -60,7 +60,15 @@ public class PeerEvaluation {
 
         //Add the panel to frame
         frame.add(panel);
+
+        //Centers the window
+        frame.setLocationRelativeTo(null);
+
+        //Set the frame to be visible
         frame.setVisible(true);
+
+        //Specify what happens when close button is clicked
+        frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 
 
         //Action listener to the submit button

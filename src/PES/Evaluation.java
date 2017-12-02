@@ -86,10 +86,14 @@ public class Evaluation{
        frame.add(submitButton);
        frame.add(table);
 
-       //Make the frame visible
-       frame.setVisible(true);
-       frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+       //Centers the window
+       frame.setLocationRelativeTo(null);
 
+       //Set the frame to be visible
+       frame.setVisible(true);
+
+       //Specify what happens when close button is clicked
+       frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 
        //Add an action listener to submit button
        submitButton.addActionListener(new ActionListener() {
