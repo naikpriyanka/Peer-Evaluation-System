@@ -13,6 +13,9 @@ public class Evaluation{
     //Indicates if the previous were entered previously
     boolean previousScores;
 
+    //Holds all the names
+    static LinkedList<String> names;
+
     //Constructor
     Evaluation(int count,boolean flag)
     {
@@ -36,6 +39,7 @@ public class Evaluation{
        frame.setLayout(null);
 
        //Prepare the data to be inserted in table
+       loadNames();
        String[] columnNames = getColumnNames();
        String[][] data = generateScores(memberCount,previousScores);
 
@@ -57,7 +61,6 @@ public class Evaluation{
 
        //Create the combobox with options
        JComboBox comboBox = new JComboBox();
-       comboBox.addItem(" ");
        comboBox.addItem("1");
        comboBox.addItem("2");
        comboBox.addItem("3");
@@ -150,6 +153,8 @@ public class Evaluation{
                finalDisplay.start();
            }
        });
+
+
    }
 
    //The column headings to be displyed in the table
@@ -172,7 +177,7 @@ public class Evaluation{
                if(j == 0)
                {
                    //TODO: Generate random name
-                   stuff[i][j] = "Name #"+i;
+                   stuff[i][j] = randomNameGenerator();
                    continue;
                }
 
@@ -190,4 +195,28 @@ public class Evaluation{
        }
        return stuff;
    }
+
+    //Load the names
+    private void loadNames()
+    {
+        names = new LinkedList<String>();
+        names.add("Gideon");
+        names.add("Sumedha");
+        names.add("Anirudh");
+        names.add("Hrishikesh");
+        names.add("Priyanka");
+        names.add("Olivia");
+        names.add("Harleen");
+        names.add("Dino");
+    }
+
+    //Generate a random name
+    private String randomNameGenerator()
+    {
+        Random r = new Random();
+        int i = r.nextInt(names.size());
+        String name = names.get(i);
+        names.remove(i);
+        return name;
+    }
 }
