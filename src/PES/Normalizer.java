@@ -20,7 +20,7 @@ public class Normalizer {
     {
         Map<String, Float> result = new HashMap<String, Float>();
 	float totalScore = 0;
-	for (Map.Entry<String, List<Integer>> entry : scores.entrySet()) {
+	for (Map.Entry<String, List<Integer>> entry : rawScores.entrySet()) {
 		float totalValue = 0;
 		for (Integer score : entry.getValue()) {
 			totalValue += score;
