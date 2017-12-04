@@ -132,7 +132,7 @@ public class Evaluation {
     }
 
     private Map<String, List<Integer>> getRawScores(JTable table) {
-        Map<String, List<Integer>> rawScoresMap = new TreeMap<>();
+        Map<String, List<Integer>> rawScoresMap = new LinkedHashMap<>();
 
         for (int i = 0; i < table.getRowCount(); i++) {
             //These two components are extracted from each row of the table.
