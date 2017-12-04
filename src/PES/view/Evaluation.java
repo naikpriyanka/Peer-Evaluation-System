@@ -16,13 +16,10 @@ public class Evaluation {
     //Indicates if the previous were entered previously
     private boolean previousScores;
 
-    //Holds all the names
-    private static LinkedList<String> names;
-
     //Constructor
-    public Evaluation(int count, boolean flag) {
-        this.memberCount = count;
-        this.previousScores = flag;
+    public Evaluation(int memberCount, boolean previousScores) {
+        this.memberCount = memberCount;
+        this.previousScores = previousScores;
     }
 
     //For debugging purposes
@@ -40,9 +37,9 @@ public class Evaluation {
         frame.setLayout(null);
 
         //Prepare the data to be inserted in table
-        loadNames();
         String[] columnNames = {"Name", "Professionalism", "Meeting Participation", "Work Evaluation"};
-        String[][] data = generateScores(memberCount, previousScores);
+        LinkedList<String> names = getNames();
+        String[][] data = generateScores(names);
 
 
         //Generate the table and make the Name column uneditable
@@ -119,9 +116,7 @@ public class Evaluation {
                     System.out.println(key + " " + rawScoresMap.get(key));
                 }
 
-                //TODO:Normalize the scores
                 Map<String, Float> normalizedScoresMap = NormalizerUtility.normalize(rawScoresMap);
-
 
                 //Close the current screen
                 frame.setVisible(false);
@@ -163,15 +158,14 @@ public class Evaluation {
     }
 
     //Generates random scores
-    private String[][] generateScores(int count, boolean previousScores) {
-        String[][] stuff = new String[count][4];
+    private String[][] generateScores(List<String> names) {
+        String[][] stuff = new String[memberCount][4];
 
-        for (int i = 0; i < count; i++) {
+        for (int i = 0; i < memberCount; i++) {
             for (int j = 0; j < 4; j++) {
                 //Set the name
                 if (j == 0) {
-                    //TODO: Generate random name
-                    stuff[i][j] = randomNameGenerator();
+                    stuff[i][j] = randomNameGenerator(names);
                     continue;
                 }
 
@@ -188,8 +182,8 @@ public class Evaluation {
     }
 
     //Load the names
-    private void loadNames() {
-        names = new LinkedList<String>();
+    private LinkedList<String> getNames() {
+        LinkedList<String> names = new LinkedList<String>();
         names.add("Gideon");
         names.add("Sumedha");
         names.add("Anirudh");
@@ -198,10 +192,11 @@ public class Evaluation {
         names.add("Olivia");
         names.add("Harleen");
         names.add("Dino");
+        return names;
     }
 
     //Generate a random name
-    private String randomNameGenerator() {
+    private String randomNameGenerator(List<String> names) {
         Random r = new Random();
         int i = r.nextInt(names.size());
         String name = names.get(i);
