@@ -1,8 +1,7 @@
-package PES;
+package PES.view;
 
 import javax.swing.*;
 import javax.swing.table.JTableHeader;
-import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.util.Map;
@@ -13,18 +12,16 @@ public class FinalDisplay {
     /*Map to hold the normalized scores.
     * Key will be the name and value will be the normalized score.
     * */
-    Map<String,Float> normalizedScores;
+    private Map<String, Float> normalizedScores;
 
     //Constructor
-    FinalDisplay(Map<String,Float> normalizedScores)
-    {
+    public FinalDisplay(Map<String, Float> normalizedScores) {
         this.normalizedScores = normalizedScores;
     }
 
     //For debugging purposes
-    public static void main(String args[])
-    {
-        Map<String,Float> scores = new TreeMap<String, Float>();
+    public static void main(String args[]) {
+        Map<String, Float> scores = new TreeMap<String, Float>();
         scores.put("Gideon", (float) 4.0);
         scores.put("Harleen", (float) 5.0);
         scores.put("Taran", (float) 3.5);
@@ -35,16 +32,15 @@ public class FinalDisplay {
         eval.start();
     }
 
-    public void start()
-    {
+    public void start() {
         //Create the frame
         JFrame frame = new JFrame("Evaluation");
         frame.setSize(500, 500);
         frame.setLayout(null);
 
         //Get the necessary data to display the table
-        String[] columnNames = getColumnNames();
-        String[][] data = prepareScoresForDisplay(normalizedScores);
+        String[] columnNames = {"Name", "Normalized Score"};
+        String[][] data = prepareScoresForDisplay();
 
         //Create the table with the above data
         JTable table = new JTable(data, columnNames);
@@ -56,12 +52,12 @@ public class FinalDisplay {
         JTableHeader header = table.getTableHeader();
 
         //The submit button
-        JButton submitButton = new JButton("Ok");
+        JButton submitButton = new JButton("OK");
 
         //Sizes and Positioning
         table.setBounds(0, 40, 500, 250);
         submitButton.setBounds(100, 300, 100, 25);
-        header.setBounds(0,0,500,40);
+        header.setBounds(0, 0, 500, 40);
         table.setRowHeight(25);
 
         //Add components to the frame
@@ -90,38 +86,29 @@ public class FinalDisplay {
         });
     }
 
-    //Column headings
-    private String[] getColumnNames()
-    {
-        String[] columnNames={"Name","Normalized Score"};
-        return columnNames;
-    }
-
     /*Receive the normalized scores from previous screen and make a String[][] from that data.
     * This step must be done because the constructor for generating the table accepts a String[][]
     * but not a Map.
     * */
-    private String[][] prepareScoresForDisplay(Map<String,Float> scores)
-    {
-        int size = scores.size();
+    private String[][] prepareScoresForDisplay() {
+        int size = normalizedScores.size();
 
         //Create a String[][] which can store all the stuff from the Map
-        String[][] normalizedScores = new String[size][4];
+        String[][] scores = new String[size][4];
 
-        int i=0,j=0;
+        int i = 0;
 
-        for(String key: scores.keySet())
-        {
+        for (String key : normalizedScores.keySet()) {
             //All the 0th columns will be names
-            normalizedScores [i][0] = key;
+            scores[i][0] = key;
 
             //Get the normalized score and put it in the first column
-            normalizedScores [i][1] = String.valueOf(scores.get(key));
+            scores[i][1] = String.format("%.2f", normalizedScores.get(key));
 
             //Proceed to the next row
             i++;
         }
-        return normalizedScores ;
+        return scores;
     }
 
 }

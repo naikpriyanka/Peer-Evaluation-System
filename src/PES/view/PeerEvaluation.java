@@ -1,4 +1,4 @@
-package PES;
+package PES.view;
 
 import javax.swing.*;
 import java.awt.event.ActionEvent;
@@ -6,19 +6,17 @@ import java.awt.event.ActionListener;
 
 public class PeerEvaluation {
 
-    public static void main(String args[])
-    {
+    public static void main(String args[]) {
         //Create a frame. This is the window.
         JFrame frame = new JFrame("Peer Evaluation System");
-        frame.setSize(350,250);
+        frame.setSize(415, 170);
         frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 
         //Add elements to the newly created window
         addElements(frame);
     }
 
-    private static void addElements(JFrame frame)
-    {
+    protected static void addElements(JFrame frame) {
         //Create a panel. Java's equivalent of HTML's div tag
         JPanel panel = new JPanel();
         panel.setLayout(null);
@@ -26,7 +24,7 @@ public class PeerEvaluation {
 
         //Create a labels
         JLabel teamMembersLabel = new JLabel("Choose the number of team members");
-        JLabel previousScoresLabel = new JLabel("Are the scores previously entered?");
+        JLabel previousScoresLabel = new JLabel("Have you entered the scores previously?");
 
         //Create the combo boxes.
         JComboBox<Integer> teamMembersCombo = new JComboBox<>(teamMemberOptions);
@@ -43,12 +41,12 @@ public class PeerEvaluation {
         JButton submitButton = new JButton("Submit");
 
         //Sizes and Positioning
-        teamMembersLabel.setBounds(25,20,280,25);
-        previousScoresLabel.setBounds(25,80,250,25);
-        teamMembersCombo.setBounds(100,50,80,25);
-        yesOption.setBounds(100, 100, 100, 25);
-        noOption.setBounds(200, 100, 100, 25);
-        submitButton.setBounds(100,150,100,25);
+        teamMembersLabel.setBounds(25, 20, 250, 25);
+        teamMembersCombo.setBounds(270, 20, 60, 25);
+        previousScoresLabel.setBounds(25, 60, 260, 25);
+        yesOption.setBounds(280, 60, 60, 25);
+        noOption.setBounds(340, 60, 50, 25);
+        submitButton.setBounds(170, 100, 70, 25);
 
         //Add the components to panel
         panel.add(teamMembersLabel);
@@ -75,8 +73,6 @@ public class PeerEvaluation {
         submitButton.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                //Get the number of team members
-                int teamMembers = (int) teamMembersCombo.getSelectedItem();
                 boolean previousScoresEntered = false;
 
                 //Get the selected option
@@ -91,7 +87,7 @@ public class PeerEvaluation {
                 frame.dispose();
 
                 //Proceed to the next window
-                Evaluation eval = new Evaluation(teamMembers, previousScoresEntered);
+                Evaluation eval = new Evaluation((int) teamMembersCombo.getSelectedItem(), previousScoresEntered);
                 eval.start();
             }
         });
