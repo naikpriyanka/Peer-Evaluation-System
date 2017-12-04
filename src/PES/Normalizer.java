@@ -3,6 +3,7 @@ package PES;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
+import java.util.*;
 
 /*
 * The method normalize() takes in the raw score and normalizes them.
@@ -11,20 +12,28 @@ import java.util.Map;
 * */
 
 public class Normalizer {
-    Normalizer()
-    {
+	Normalizer() {
 
-    }
+	}
 
-    Map<String,Float> normalize(Map<String,List<Integer>> rawScores)
-    {
-        Map<String,Float> scores = new HashMap<String, Float>();
-
-        for(String key: rawScores.keySet())
-        {
-            List<Integer> a = rawScores.get(key);
-            scores.put(key, (float) 1.0);
-        }
-        return scores;
-    }
+	Map<String, Float> normalize(Map<String, List<Integer>> rawScores) {
+		// input: map<strings, List<Integer>
+		// output: map of integer
+		Map<String, Float> result = new LinkedHashMap<String, Float>();
+		float totalScore = 0;
+		for (Map.Entry<String, List<Integer>> entry : rawScores.entrySet()) {
+			float totalValue = 0;
+			for (Integer score : entry.getValue()) {
+				totalValue += score;
+			}
+			totalScore += totalValue;
+			result.put(entry.getKey(), totalValue);
+		}
+		if (totalScore != 0) {
+			for (Map.Entry<String, Float> entry : result.entrySet()) {
+				result.put(entry.getKey(), entry.getValue() / totalScore);
+			}
+		}
+		return result;
+	}
 }
