@@ -3,11 +3,14 @@ package PES.view;
 import PES.util.NormalizerUtility;
 
 import javax.swing.*;
+import javax.swing.table.DefaultTableCellRenderer;
 import javax.swing.table.JTableHeader;
 import javax.swing.table.TableColumn;
+import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.util.*;
+import java.util.List;
 
 import static javax.swing.JOptionPane.ERROR_MESSAGE;
 
@@ -52,6 +55,8 @@ public class Evaluation {
 
         //Generate the table and make the Name column uneditable
         table = createRawScoreTable(columnNames, data);
+        table.setShowGrid(true);
+        table.setGridColor(Color.lightGray);
 
        /*The following code makes sure that the user will choose the input from
        * a combo box instead of entering the digits.
@@ -62,15 +67,22 @@ public class Evaluation {
         String[] rawScores = {"1", "2", "3", "4", "5"};
         JComboBox comboBox = new JComboBox(rawScores);
 
+        //Tooltip to make user aware of the combo box to enter score
+        DefaultTableCellRenderer renderer = new DefaultTableCellRenderer();
+        renderer.setToolTipText("Click to enter score");
+
         //Make all the columns editable by comboboxes only
         TableColumn column1 = table.getColumnModel().getColumn(1);
         column1.setCellEditor(new DefaultCellEditor(comboBox));
+        column1.setCellRenderer(renderer);
 
         TableColumn column2 = table.getColumnModel().getColumn(2);
         column2.setCellEditor(new DefaultCellEditor(comboBox));
+        column2.setCellRenderer(renderer);
 
         TableColumn column3 = table.getColumnModel().getColumn(3);
         column3.setCellEditor(new DefaultCellEditor(comboBox));
+        column3.setCellRenderer(renderer);
 
         //Create a submit button
         JButton submitButton = new JButton("Submit");

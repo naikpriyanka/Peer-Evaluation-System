@@ -2,6 +2,7 @@ package PES.view;
 
 import javax.swing.*;
 import javax.swing.table.JTableHeader;
+import java.awt.*;
 import java.util.Map;
 import java.util.TreeMap;
 
@@ -42,6 +43,8 @@ public class FinalDisplay {
 
         //Create the table with the above data
         JTable table = new JTable(data, columnNames);
+        table.setShowGrid(true);
+        table.setGridColor(Color.lightGray);
 
         //Make the table uneditable
         table.setEnabled(false);
