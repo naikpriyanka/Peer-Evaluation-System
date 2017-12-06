@@ -35,6 +35,7 @@ public class FinalDisplay {
         //Create the frame
         JFrame frame = new JFrame("Evaluation");
         frame.setSize(500, 240);
+        frame.setResizable(false);
         frame.setLayout(null);
 
         //Get the necessary data to display the table

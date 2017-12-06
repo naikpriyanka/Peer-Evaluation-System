@@ -27,7 +27,8 @@ public class PeerEvaluation {
     protected void addElements() {
         //Create a frame. This is the window
         frame = new JFrame("Peer Evaluation System");
-        frame.setSize(415, 170);
+        frame.setSize(415, 200);
+        frame.setResizable(false);
         frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 
         //Create a panel. Java's equivalent of HTML's div tag
@@ -54,12 +55,12 @@ public class PeerEvaluation {
         JButton submitButton = new JButton("Submit");
 
         //Sizes and Positioning
-        teamMembersLabel.setBounds(25, 20, 250, 25);
-        teamMembersCombo.setBounds(270, 20, 60, 25);
-        previousScoresLabel.setBounds(25, 60, 260, 25);
-        yesOption.setBounds(280, 60, 60, 25);
-        noOption.setBounds(340, 60, 50, 25);
-        submitButton.setBounds(170, 100, 70, 25);
+        teamMembersLabel.setBounds(frame.getWidth() / 2 - 150, 20, 250, 25);
+        teamMembersCombo.setBounds(frame.getWidth() / 2 - 50, 50, 60, 25);
+        previousScoresLabel.setBounds(frame.getWidth() / 2 - 150, 80, 260, 25);
+        yesOption.setBounds(frame.getWidth() / 2 - 60, 100, 60, 25);
+        noOption.setBounds(frame.getWidth() / 2, 100, 50, 25);
+        submitButton.setBounds(frame.getWidth() / 2 - 50, 140, 70, 25);
 
         //Add the components to panel
         panel.add(teamMembersLabel);

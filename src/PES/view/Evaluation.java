@@ -45,6 +45,7 @@ public class Evaluation {
 
         //Create the frame
         frame.setSize(500, 300);
+        frame.setResizable(false);
         frame.setLayout(null);
 
         //Prepare the data to be inserted in table
@@ -64,7 +65,7 @@ public class Evaluation {
        * the program.*/
 
         //Create the combobox with options
-        String[] rawScores = {"1", "2", "3", "4", "5"};
+        String[] rawScores = {"0", "1", "2", "3", "4", "5"};
         JComboBox comboBox = new JComboBox(rawScores);
 
         //Tooltip to make user aware of the combo box to enter score
@@ -91,7 +92,7 @@ public class Evaluation {
         JTableHeader header = table.getTableHeader();
 
         //Sizes and Positioning
-        submitButton.setBounds(100, 230, 100, 25);
+        submitButton.setBounds(frame.getWidth() / 2 - 50, 230, 100, 25);
         table.setBounds(0, 40, 500, 180);
         header.setBounds(0, 0, 500, 40);
         table.setRowHeight(25);
