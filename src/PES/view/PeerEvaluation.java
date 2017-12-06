@@ -6,17 +6,30 @@ import java.awt.event.ActionListener;
 
 public class PeerEvaluation {
 
+    //Start window
+    private JFrame frame;
+
+    //Yes radio button option for user to enter whether he has entered the scores previously
+    private JRadioButton yesOption;
+
+    //No radio button option for user to enter whether he has entered the scores previously
+    private JRadioButton noOption;
+
+    //Combo box for user to enter number of team members in his team
+    private JComboBox<Integer> teamMembersCombo;
+
     public static void main(String args[]) {
-        //Create a frame. This is the window.
-        JFrame frame = new JFrame("Peer Evaluation System");
+        PeerEvaluation peerEvaluation = new PeerEvaluation();
+        peerEvaluation.addElements();
+    }
+
+    //Add elements to the newly created window
+    protected void addElements() {
+        //Create a frame. This is the window
+        frame = new JFrame("Peer Evaluation System");
         frame.setSize(415, 170);
         frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 
-        //Add elements to the newly created window
-        addElements(frame);
-    }
-
-    protected static void addElements(JFrame frame) {
         //Create a panel. Java's equivalent of HTML's div tag
         JPanel panel = new JPanel();
         panel.setLayout(null);
@@ -27,12 +40,12 @@ public class PeerEvaluation {
         JLabel previousScoresLabel = new JLabel("Have you entered the scores previously?");
 
         //Create the combo boxes.
-        JComboBox<Integer> teamMembersCombo = new JComboBox<>(teamMemberOptions);
+        teamMembersCombo = new JComboBox<>(teamMemberOptions);
         teamMembersCombo.setSelectedIndex(0);
 
         //Create the radio buttons
-        JRadioButton yesOption = new JRadioButton("Yes");
-        JRadioButton noOption = new JRadioButton("No", true);
+        yesOption = new JRadioButton("Yes");
+        noOption = new JRadioButton("No", true);
         ButtonGroup decisionGroup = new ButtonGroup();
         decisionGroup.add(yesOption);
         decisionGroup.add(noOption);
@@ -70,26 +83,29 @@ public class PeerEvaluation {
 
 
         //Action listener to the submit button
-        submitButton.addActionListener(new ActionListener() {
-            @Override
-            public void actionPerformed(ActionEvent e) {
-                boolean previousScoresEntered = false;
+        submitButton.addActionListener(new SubmitButtonListener());
+    }
 
-                //Get the selected option
-                if (yesOption.isSelected()) {
-                    previousScoresEntered = true;
-                } else if (noOption.isSelected()) {
-                    previousScoresEntered = false;
-                }
+    private class SubmitButtonListener implements ActionListener {
 
-                //Close the present window
-                frame.setVisible(false);
-                frame.dispose();
+        @Override
+        public void actionPerformed(ActionEvent e) {
+            boolean previousScoresEntered = false;
 
-                //Proceed to the next window
-                Evaluation eval = new Evaluation((int) teamMembersCombo.getSelectedItem(), previousScoresEntered);
-                eval.start();
+            //Get the selected option
+            if (yesOption.isSelected()) {
+                previousScoresEntered = true;
+            } else if (noOption.isSelected()) {
+                previousScoresEntered = false;
             }
-        });
+
+            //Close the present window
+            frame.setVisible(false);
+            frame.dispose();
+
+            //Proceed to the next window
+            Evaluation eval = new Evaluation((int) teamMembersCombo.getSelectedItem(), previousScoresEntered);
+            eval.start();
+        }
     }
 }
