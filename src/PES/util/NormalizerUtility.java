@@ -1,6 +1,6 @@
 package PES.util;
 
-import java.util.HashMap;
+import java.util.LinkedHashMap;
 import java.util.List;
 import java.util.Map;
 
@@ -13,7 +13,7 @@ import java.util.Map;
 public class NormalizerUtility {
 
     public static Map<String, Float> normalize(Map<String, List<Integer>> rawScores) {
-        Map<String, Float> result = new HashMap<String, Float>();
+        Map<String, Float> result = new LinkedHashMap<String, Float>();
         float totalScore = 0;
 
         // For each entry(name), the list of scores(three) given by a student are added

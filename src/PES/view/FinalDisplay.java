@@ -2,8 +2,7 @@ package PES.view;
 
 import javax.swing.*;
 import javax.swing.table.JTableHeader;
-import java.awt.event.ActionEvent;
-import java.awt.event.ActionListener;
+import java.awt.*;
 import java.util.Map;
 import java.util.TreeMap;
 
@@ -35,7 +34,8 @@ public class FinalDisplay {
     public void start() {
         //Create the frame
         JFrame frame = new JFrame("Evaluation");
-        frame.setSize(500, 500);
+        frame.setSize(500, 240);
+        frame.setResizable(false);
         frame.setLayout(null);
 
         //Get the necessary data to display the table
@@ -44,6 +44,8 @@ public class FinalDisplay {
 
         //Create the table with the above data
         JTable table = new JTable(data, columnNames);
+        table.setShowGrid(true);
+        table.setGridColor(Color.lightGray);
 
         //Make the table uneditable
         table.setEnabled(false);
@@ -51,17 +53,12 @@ public class FinalDisplay {
         //Table Header
         JTableHeader header = table.getTableHeader();
 
-        //The submit button
-        JButton submitButton = new JButton("OK");
-
         //Sizes and Positioning
-        table.setBounds(0, 40, 500, 250);
-        submitButton.setBounds(100, 300, 100, 25);
+        table.setBounds(0, 40, 500, 180);
         header.setBounds(0, 0, 500, 40);
         table.setRowHeight(25);
 
         //Add components to the frame
-        frame.add(submitButton);
         frame.add(header);
         frame.add(table);
 
@@ -73,17 +70,6 @@ public class FinalDisplay {
 
         //Specify what happens when close button is clicked
         frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-
-        //Add an action listener to the submit button
-        submitButton.addActionListener(new ActionListener() {
-            @Override
-            public void actionPerformed(ActionEvent e) {
-                //Close the application
-                frame.setVisible(false);
-                frame.dispose();
-                System.exit(0);
-            }
-        });
     }
 
     /*Receive the normalized scores from previous screen and make a String[][] from that data.

@@ -6,17 +6,31 @@ import java.awt.event.ActionListener;
 
 public class PeerEvaluation {
 
-    public static void main(String args[]) {
-        //Create a frame. This is the window.
-        JFrame frame = new JFrame("Peer Evaluation System");
-        frame.setSize(415, 170);
-        frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+    //Start window
+    private JFrame frame;
 
-        //Add elements to the newly created window
-        addElements(frame);
+    //Yes radio button option for user to enter whether he has entered the scores previously
+    private JRadioButton yesOption;
+
+    //No radio button option for user to enter whether he has entered the scores previously
+    private JRadioButton noOption;
+
+    //Combo box for user to enter number of team members in his team
+    private JComboBox<Integer> teamMembersCombo;
+
+    public static void main(String args[]) {
+        PeerEvaluation peerEvaluation = new PeerEvaluation();
+        peerEvaluation.addElements();
     }
 
-    protected static void addElements(JFrame frame) {
+    //Add elements to the newly created window
+    protected void addElements() {
+        //Create a frame. This is the window
+        frame = new JFrame("Peer Evaluation System");
+        frame.setSize(415, 200);
+        frame.setResizable(false);
+        frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+
         //Create a panel. Java's equivalent of HTML's div tag
         JPanel panel = new JPanel();
         panel.setLayout(null);
@@ -27,12 +41,12 @@ public class PeerEvaluation {
         JLabel previousScoresLabel = new JLabel("Have you entered the scores previously?");
 
         //Create the combo boxes.
-        JComboBox<Integer> teamMembersCombo = new JComboBox<>(teamMemberOptions);
+        teamMembersCombo = new JComboBox<>(teamMemberOptions);
         teamMembersCombo.setSelectedIndex(0);
 
         //Create the radio buttons
-        JRadioButton yesOption = new JRadioButton("Yes");
-        JRadioButton noOption = new JRadioButton("No", true);
+        yesOption = new JRadioButton("Yes");
+        noOption = new JRadioButton("No", true);
         ButtonGroup decisionGroup = new ButtonGroup();
         decisionGroup.add(yesOption);
         decisionGroup.add(noOption);
@@ -41,12 +55,12 @@ public class PeerEvaluation {
         JButton submitButton = new JButton("Submit");
 
         //Sizes and Positioning
-        teamMembersLabel.setBounds(25, 20, 250, 25);
-        teamMembersCombo.setBounds(270, 20, 60, 25);
-        previousScoresLabel.setBounds(25, 60, 260, 25);
-        yesOption.setBounds(280, 60, 60, 25);
-        noOption.setBounds(340, 60, 50, 25);
-        submitButton.setBounds(170, 100, 70, 25);
+        teamMembersLabel.setBounds(frame.getWidth() / 2 - 150, 20, 250, 25);
+        teamMembersCombo.setBounds(frame.getWidth() / 2 - 50, 50, 60, 25);
+        previousScoresLabel.setBounds(frame.getWidth() / 2 - 150, 80, 260, 25);
+        yesOption.setBounds(frame.getWidth() / 2 - 60, 100, 60, 25);
+        noOption.setBounds(frame.getWidth() / 2, 100, 50, 25);
+        submitButton.setBounds(frame.getWidth() / 2 - 50, 140, 70, 25);
 
         //Add the components to panel
         panel.add(teamMembersLabel);
@@ -70,26 +84,29 @@ public class PeerEvaluation {
 
 
         //Action listener to the submit button
-        submitButton.addActionListener(new ActionListener() {
-            @Override
-            public void actionPerformed(ActionEvent e) {
-                boolean previousScoresEntered = false;
+        submitButton.addActionListener(new SubmitButtonListener());
+    }
 
-                //Get the selected option
-                if (yesOption.isSelected()) {
-                    previousScoresEntered = true;
-                } else if (noOption.isSelected()) {
-                    previousScoresEntered = false;
-                }
+    private class SubmitButtonListener implements ActionListener {
 
-                //Close the present window
-                frame.setVisible(false);
-                frame.dispose();
+        @Override
+        public void actionPerformed(ActionEvent e) {
+            boolean previousScoresEntered = false;
 
-                //Proceed to the next window
-                Evaluation eval = new Evaluation((int) teamMembersCombo.getSelectedItem(), previousScoresEntered);
-                eval.start();
+            //Get the selected option
+            if (yesOption.isSelected()) {
+                previousScoresEntered = true;
+            } else if (noOption.isSelected()) {
+                previousScoresEntered = false;
             }
-        });
+
+            //Close the present window
+            frame.setVisible(false);
+            frame.dispose();
+
+            //Proceed to the next window
+            Evaluation eval = new Evaluation((int) teamMembersCombo.getSelectedItem(), previousScoresEntered);
+            eval.start();
+        }
     }
 }
