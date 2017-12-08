@@ -10,7 +10,7 @@ import java.util.Map;
 * value as normalized score.
 * */
 
-public class NormalizerUtility {
+public final class NormalizerUtility {
 
     public static Map<String, Float> normalize(Map<String, List<Integer>> rawScores) {
         Map<String, Float> result = new LinkedHashMap<String, Float>();

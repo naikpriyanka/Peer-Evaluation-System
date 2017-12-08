@@ -1,17 +1,12 @@
 package PES.util;
 
-import java.util.*;
 import org.junit.Test;
-import org.junit.Before;
+
+import java.util.*;
+
 import static org.junit.Assert.assertEquals;
 
 public class NormalizerUtilityTest {
-    private NormalizerUtility nu;
-
-    @Before
-    public void setUp(){
-        nu = new NormalizerUtility();
-    }
 
     @Test
     public void OnePerson() throws Exception {
@@ -19,8 +14,7 @@ public class NormalizerUtilityTest {
     	mymap.put("Person 1",new ArrayList<>(Arrays.asList(4,3,5)));
     	Map<String,Float> expectedMap = new HashMap<>();
     	expectedMap.put("Person 1",1.0f);
-    	assertEquals(expectedMap,nu.normalize(mymap));
-
+    	assertEquals(expectedMap, NormalizerUtility.normalize(mymap));
     }
 
     @Test
@@ -31,8 +25,7 @@ public class NormalizerUtilityTest {
         Map<String,Float> expectedMap = new HashMap<>();
         expectedMap.put("Person 1",(float)12/19);
         expectedMap.put("Person 2",(float)7/19);
-        assertEquals(expectedMap,nu.normalize(mymap));
-
+        assertEquals(expectedMap, NormalizerUtility.normalize(mymap));
     }
 
     @Test
@@ -52,8 +45,7 @@ public class NormalizerUtilityTest {
         expectedMap.put("Person 5",(float)0/53);
         expectedMap.put("Person 6",(float)11/53);
 
-        assertEquals(expectedMap,nu.normalize(mymap));
-
+        assertEquals(expectedMap, NormalizerUtility.normalize(mymap));
     }
 
     @Test
@@ -75,7 +67,6 @@ public class NormalizerUtilityTest {
         expectedMap.put("Person 6",(float)11/61);
         expectedMap.put("Person 7",(float)8/61);
 
-        assertEquals(expectedMap,nu.normalize(mymap));
-
+        assertEquals(expectedMap, NormalizerUtility.normalize(mymap));
     }
 }
