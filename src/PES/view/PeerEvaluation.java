@@ -3,7 +3,10 @@ package PES.view;
 import javax.swing.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
-
+/*
+ * Class for Starting Window of Peer Evaluation System where the user is asked for number of team members
+ * and if scores have been previously entered.
+ * */
 public class PeerEvaluation {
 
     //Start window
@@ -18,16 +21,22 @@ public class PeerEvaluation {
     //Combo box for user to enter number of team members in his team
     private JComboBox<Integer> teamMembersCombo;
 
+    //Main method
     public static void main(String args[]) {
         PeerEvaluation peerEvaluation = new PeerEvaluation();
         peerEvaluation.addElements();
     }
 
-    //Add elements to the newly created window
+    /*
+    Method Name : addElements()
+    Description : Adds elements to the newly created window.
+    Parameters : None.
+    Return Value : None.
+     */
     protected void addElements() {
         //Create a frame. This is the window
         frame = new JFrame("Peer Evaluation System");
-        frame.setSize(415, 200);
+        frame.setSize(415, 250);
         frame.setResizable(false);
         frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 
@@ -60,7 +69,7 @@ public class PeerEvaluation {
         previousScoresLabel.setBounds(frame.getWidth() / 2 - 150, 80, 260, 25);
         yesOption.setBounds(frame.getWidth() / 2 - 60, 100, 60, 25);
         noOption.setBounds(frame.getWidth() / 2, 100, 50, 25);
-        submitButton.setBounds(frame.getWidth() / 2 - 50, 140, 70, 25);
+        submitButton.setBounds(frame.getWidth() / 2 - 50, 140, 100, 25);
 
         //Add the components to panel
         panel.add(teamMembersLabel);
@@ -86,9 +95,16 @@ public class PeerEvaluation {
         //Action listener to the submit button
         submitButton.addActionListener(new SubmitButtonListener());
     }
-
+    /*
+    Event Handler class for Submit button.
+    */
     private class SubmitButtonListener implements ActionListener {
-
+        /*
+        Method Name : actionPerformed()
+        Description : Overriden method to receive the inputs entered by the user on clicking the Submit button.
+        Parameters :  ActionEvent object that gives information about the event and its source.
+        Return Value : None.
+         */
         @Override
         public void actionPerformed(ActionEvent e) {
             boolean previousScoresEntered = false;

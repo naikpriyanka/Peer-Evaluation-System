@@ -13,7 +13,9 @@ import java.util.*;
 import java.util.List;
 
 import static javax.swing.JOptionPane.ERROR_MESSAGE;
-
+/*
+* Class to handle User Input for Peer Evaluation Scores.
+* */
 public class Evaluation {
     //Get the number of people from the previous window
     private int memberCount;
@@ -27,20 +29,31 @@ public class Evaluation {
     //Score table
     private JTable table;
 
-    //Constructor
+    /*
+    Method Name : Evaluation()
+    Description : Constructor method to initialize class variables.
+    Parameters : 1) memberCount (int value for Number of members in the team).
+                 2) previousScoresEntered (boolean value to state if scores previously entered.).
+    Return Value : instance of the class.
+     */
     public Evaluation(int memberCount, boolean previousScoresEntered) {
         this.memberCount = memberCount;
         this.previousScoresEntered = previousScoresEntered;
         frame = new JFrame("Evaluation");
     }
 
-    //For debugging purposes
+    //Main method.
     public static void main(String args[]) {
         Evaluation eval = new Evaluation(5, true);
         eval.start();
     }
 
-    //Contains the GUI and logic
+    /*
+    Method Name : start()
+    Description : Initial method of program flow. Creates the window layout for Evaluation screen.
+    Parameters : None.
+    Return Value : None.
+     */
     public void start() {
 
         //Create the frame
@@ -119,20 +132,27 @@ public class Evaluation {
         //Add an action listener to submit button
         submitButton.addActionListener(new SubmitButtonListener());
     }
-
+    /*
+    Event Handler class for Submit button.
+    */
     private class SubmitButtonListener implements ActionListener {
-
+        /*
+        Method Name : actionPerformed()
+        Description : Overriden method to receive the inputs entered by the user on clicking the Submit button.
+        Parameters :  ActionEvent object that gives information about the event and its source.
+        Return Value : None.
+         */
         @Override
         public void actionPerformed(ActionEvent e) {
             /*Collect all the scores from the table. Store them in a Map.
-               * Each entry of the map contains the Name as key and a List of scores as value.
-               * */
+              Each entry of the map contains the Name as key and a List of scores as value.
+            */
             Map<String, List<Integer>> rawScoresMap = getRawScores(table);
 
             //Check if the user has entered valid scores for all the users
             //If it is valid then only proceed to displaying of normalised scores
             if(!rawScoresMap.isEmpty() && memberCount == rawScoresMap.size()) {
-                //For debuggin purposes
+                //For debugging purposes
                 for (String key : rawScoresMap.keySet()) {
                     System.out.println(key + " " + rawScoresMap.get(key));
                 }
@@ -149,7 +169,13 @@ public class Evaluation {
             }
         }
     }
-
+    /*
+    Method Name : createRawScoreTable()
+    Description : Creates a table based on the number of team members and initial raw score data.
+    Parameters :  1) String[] columnNames - String array for names of columns
+                  2) String[][] data - 2D String array with pre-filled data of names and scores.
+    Return Value : JTable(data, columnNames) (Returns a JTable with required data.).
+     */
     private JTable createRawScoreTable(String[] columnNames, String[][] data) {
         return new JTable(data, columnNames) {
                 @Override
@@ -159,7 +185,12 @@ public class Evaluation {
                 }
             };
     }
-
+    /*
+    Method Name : getRawScores()
+    Description : Method to receive the scores entered by the user/pre-filled in the GUI and returns them as a Map.
+    Parameters :  JTable table (JTable object).
+    Return Value : Map<String, List<Integer>> - raw scores entered in the GUI.
+     */
     private Map<String, List<Integer>> getRawScores(JTable table) {
         Map<String, List<Integer>> rawScoresMap = new LinkedHashMap<>();
 
@@ -196,31 +227,41 @@ public class Evaluation {
         return rawScoresMap;
     }
 
-    //Generates random scores
+    /*
+    Method Name : generateScores()
+    Description : Method to assign Random names from a pre-defined list of names and Random scores between 0-5.
+    Parameters :  List<String> names (Predefined List of Names).
+    Return Value : String[][] (String array containing names and their scores)
+     */
     private String[][] generateScores(List<String> names) {
-        String[][] stuff = new String[memberCount][4];
+        String[][] rawScoresMap = new String[memberCount][4];
 
         for (int i = 0; i < memberCount; i++) {
             for (int j = 0; j < 4; j++) {
                 //Set the name
                 if (j == 0) {
-                    stuff[i][j] = randomNameGenerator(names);
+                    rawScoresMap[i][j] = randomNameGenerator(names);
                     continue;
                 }
 
                 if (previousScoresEntered) {
                     Random rand = new Random();
                     int n = rand.nextInt(5) + 1;
-                    stuff[i][j] = Integer.toString(n);
+                    rawScoresMap[i][j] = Integer.toString(n);
                 } else {
-                    stuff[i][j] = ""; //If the user has not entered score previously, keep the field blank
+                    rawScoresMap[i][j] = ""; //If the user has not entered score previously, keep the field blank
                 }
             }
         }
-        return stuff;
+        return rawScoresMap;
     }
 
-    //Load the names
+    /*
+    Method Name : getNames()
+    Description : Getter Method for predefined List of Random Names.
+    Parameters :  None.
+    Return Value : LinkedList<String> (LinkedList of names).
+     */
     private LinkedList<String> getNames() {
         LinkedList<String> names = new LinkedList<String>();
         names.add("Gideon");
@@ -234,7 +275,12 @@ public class Evaluation {
         return names;
     }
 
-    //Generate a random name
+    /*
+    Method Name : randomNameGenerator()
+    Description : Method for generating a new random name from a given predefined List of Random Names.
+    Parameters :  List<String> names (List of names).
+    Return Value : String (Generated random name).
+     */
     private String randomNameGenerator(List<String> names) {
         Random r = new Random();
         int i = r.nextInt(names.size());

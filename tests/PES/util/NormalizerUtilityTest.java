@@ -4,15 +4,29 @@ import java.util.*;
 import org.junit.Test;
 import org.junit.Before;
 import static org.junit.Assert.assertEquals;
-
+/*
+ * Class for testing NormalizerUtility class.
+ * */
 public class NormalizerUtilityTest {
     private NormalizerUtility nu;
 
+    /*
+    Method Name : setUp()
+    Description : Method for initial setup of variables.
+    Parameters : None.
+    Return Value : None.
+     */
     @Before
     public void setUp(){
         nu = new NormalizerUtility();
     }
 
+    /*
+    Method Name : OnePerson()
+    Description : Method for testing normalizerUtility for 1 person.
+    Parameters : None.
+    Return Value : None.
+     */
     @Test
     public void OnePerson() throws Exception {
     	Map<String, List<Integer>> mymap = new HashMap<>();
@@ -23,6 +37,12 @@ public class NormalizerUtilityTest {
 
     }
 
+    /*
+    Method Name : TwoPeople()
+    Description : Method for testing normalizerUtility for 2 people.
+    Parameters : None.
+    Return Value : None.
+     */
     @Test
     public void TwoPeople() throws Exception {
         Map<String, List<Integer>> mymap = new HashMap<>();
@@ -35,6 +55,12 @@ public class NormalizerUtilityTest {
 
     }
 
+    /*
+    Method Name : SixPeople()
+    Description : Method for testing normalizerUtility for 6 people.
+    Parameters : None.
+    Return Value : None.
+     */
     @Test
     public void SixPeople() throws Exception {
         Map<String, List<Integer>> mymap = new HashMap<>();
@@ -56,6 +82,12 @@ public class NormalizerUtilityTest {
 
     }
 
+    /*
+    Method Name : SevenPeople()
+    Description : Method for testing normalizerUtility for 7 people.
+    Parameters : None.
+    Return Value : None.
+     */
     @Test
     public void SevenPeople() throws Exception {
         Map<String, List<Integer>> mymap = new HashMap<>();

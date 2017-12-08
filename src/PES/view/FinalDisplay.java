@@ -5,7 +5,9 @@ import javax.swing.table.JTableHeader;
 import java.awt.*;
 import java.util.Map;
 import java.util.TreeMap;
-
+/*
+ * Class for Final Evaluation Window where Normalized scores are displayed.
+ * */
 public class FinalDisplay {
 
     /*Map to hold the normalized scores.
@@ -13,12 +15,12 @@ public class FinalDisplay {
     * */
     private Map<String, Float> normalizedScores;
 
-    //Constructor
+    //Constructor method
     public FinalDisplay(Map<String, Float> normalizedScores) {
         this.normalizedScores = normalizedScores;
     }
 
-    //For debugging purposes
+    //Main method
     public static void main(String args[]) {
         Map<String, Float> scores = new TreeMap<String, Float>();
         scores.put("Gideon", (float) 4.0);
@@ -31,6 +33,12 @@ public class FinalDisplay {
         eval.start();
     }
 
+    /*
+    Method Name : start()
+    Description : Initial method of program flow. Creates the window layout for Final Evaluation screen.
+    Parameters : None.
+    Return Value : None.
+     */
     public void start() {
         //Create the frame
         JFrame frame = new JFrame("Evaluation");
@@ -72,14 +80,16 @@ public class FinalDisplay {
         frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
     }
 
-    /*Receive the normalized scores from previous screen and make a String[][] from that data.
-    * This step must be done because the constructor for generating the table accepts a String[][]
-    * but not a Map.
-    * */
+    /*
+    Method Name : prepareScoresForDisplay()
+    Description : Method for return a 2D String array of Names and normalized scores from Map which will be used for Display.
+    Parameters :  None.
+    Return Value : String[][] (String 2D array representation of Names and normalized Scores).
+     */
     private String[][] prepareScoresForDisplay() {
         int size = normalizedScores.size();
 
-        //Create a String[][] which can store all the stuff from the Map
+        //Create a String[][] which can store all the data from the Map
         String[][] scores = new String[size][4];
 
         int i = 0;
