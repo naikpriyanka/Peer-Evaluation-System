@@ -7,13 +7,14 @@ import java.util.Map;
 /*
  Class for calculating normalized scores for entered Peer evaluation scores.
  */
-public class NormalizerUtility {
+public final class NormalizerUtility {
+
     /*
-    Method Name : normalize()
-    Description : Method for normalizing and return final scores.
-    Parameters : Map<String, List<Integer>> rawScores (Map of team members and List pf peer evaluation scores).
-    Return Value : Map<String, Float> (Map of final scores for every team member).
-     */
+   Method Name : normalize()
+   Description : Method for normalizing and return final scores.
+   Parameters : Map<String, List<Integer>> rawScores (Map of team members and List pf peer evaluation scores).
+   Return Value : Map<String, Float> (Map of final scores for every team member).
+    */
     public static Map<String, Float> normalize(Map<String, List<Integer>> rawScores) {
         Map<String, Float> result = new LinkedHashMap<String, Float>();
         float totalScore = 0;
