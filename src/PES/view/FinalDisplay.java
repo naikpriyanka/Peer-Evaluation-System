@@ -4,7 +4,6 @@ import javax.swing.*;
 import javax.swing.table.JTableHeader;
 import java.awt.*;
 import java.util.Map;
-import java.util.TreeMap;
 /*
  * Class for Final Evaluation Window where Normalized scores are displayed.
  * */
@@ -18,19 +17,6 @@ public class FinalDisplay {
     //Constructor method
     public FinalDisplay(Map<String, Float> normalizedScores) {
         this.normalizedScores = normalizedScores;
-    }
-
-    //Main method
-    public static void main(String args[]) {
-        Map<String, Float> scores = new TreeMap<String, Float>();
-        scores.put("Gideon", (float) 4.0);
-        scores.put("Harleen", (float) 5.0);
-        scores.put("Taran", (float) 3.5);
-        scores.put("Naveen", (float) 4.5);
-        scores.put("Praveen", (float) 5.0);
-
-        FinalDisplay eval = new FinalDisplay(scores);
-        eval.start();
     }
 
     /*
