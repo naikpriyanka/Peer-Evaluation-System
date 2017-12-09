@@ -42,11 +42,6 @@ public class Evaluation {
         frame = new JFrame("Evaluation");
     }
 
-    //Main method.
-    public static void main(String args[]) {
-        Evaluation eval = new Evaluation(5, true);
-        eval.start();
-    }
 
     /*
     Method Name : start()
