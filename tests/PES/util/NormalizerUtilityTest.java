@@ -9,6 +9,32 @@ import static org.junit.Assert.assertEquals;
  * */
 public class NormalizerUtilityTest {
     /*
+    Method Name : Zero()
+    Description : Method for testing normalizerUtility for all zero scores.
+    Parameters : None.
+    Return Value : None.
+     */
+    @Test
+    public void Zero() throws Exception {
+        Map<String, List<Integer>> mymap = new HashMap<>();
+        mymap.put("Person 1",new ArrayList<>(Arrays.asList(0,0,0)));
+        mymap.put("Person 2",new ArrayList<>(Arrays.asList(0,0,0)));
+        mymap.put("Person 3",new ArrayList<>(Arrays.asList(0,0,0)));
+        mymap.put("Person 4",new ArrayList<>(Arrays.asList(0,0,0)));
+        mymap.put("Person 5",new ArrayList<>(Arrays.asList(0,0,0)));
+        mymap.put("Person 6",new ArrayList<>(Arrays.asList(0,0,0)));
+        Map<String,Float> expectedMap = new HashMap<>();
+        expectedMap.put("Person 1",(float)0.0);
+        expectedMap.put("Person 2",(float)0.0);
+        expectedMap.put("Person 3",(float)0.0);
+        expectedMap.put("Person 4",(float)0.0);
+        expectedMap.put("Person 5",(float)0.0);
+        expectedMap.put("Person 6",(float)0.0);
+
+        assertEquals(expectedMap, NormalizerUtility.normalize(mymap));
+    }
+
+    /*
     Method Name : OnePerson()
     Description : Method for testing normalizerUtility for 1 person.
     Parameters : None.
