@@ -9,13 +9,13 @@ import static org.junit.Assert.assertEquals;
  * */
 public class NormalizerUtilityTest {
     /*
-    Method Name : Zero()
+    Method Name : testZeroScores()
     Description : Method for testing normalizerUtility for all zero scores.
     Parameters : None.
     Return Value : None.
      */
     @Test
-    public void Zero() throws Exception {
+    public void testZeroScores() throws Exception {
         Map<String, List<Integer>> mymap = new HashMap<>();
         mymap.put("Person 1",new ArrayList<>(Arrays.asList(0,0,0)));
         mymap.put("Person 2",new ArrayList<>(Arrays.asList(0,0,0)));
@@ -35,13 +35,13 @@ public class NormalizerUtilityTest {
     }
 
     /*
-    Method Name : OnePerson()
+    Method Name : testOnePerson()
     Description : Method for testing normalizerUtility for 1 person.
     Parameters : None.
     Return Value : None.
      */
     @Test
-    public void OnePerson() throws Exception {
+    public void testOnePerson() throws Exception {
     	Map<String, List<Integer>> mymap = new HashMap<>();
     	mymap.put("Person 1",new ArrayList<>(Arrays.asList(4,3,5)));
     	Map<String,Float> expectedMap = new HashMap<>();
@@ -50,13 +50,13 @@ public class NormalizerUtilityTest {
     }
 
     /*
-    Method Name : TwoPeople()
+    Method Name : testTwoPeople()
     Description : Method for testing normalizerUtility for 2 people.
     Parameters : None.
     Return Value : None.
      */
     @Test
-    public void TwoPeople() throws Exception {
+    public void testTwoPeople() throws Exception {
         Map<String, List<Integer>> mymap = new HashMap<>();
         mymap.put("Person 1",new ArrayList<>(Arrays.asList(4,3,5)));
         mymap.put("Person 2",new ArrayList<>(Arrays.asList(2,0,5)));
@@ -67,13 +67,13 @@ public class NormalizerUtilityTest {
     }
 
     /*
-    Method Name : SixPeople()
+    Method Name : testSixPeople()
     Description : Method for testing normalizerUtility for 6 people.
     Parameters : None.
     Return Value : None.
      */
     @Test
-    public void SixPeople() throws Exception {
+    public void testSixPeople() throws Exception {
         Map<String, List<Integer>> mymap = new HashMap<>();
         mymap.put("Person 1",new ArrayList<>(Arrays.asList(4,3,5)));
         mymap.put("Person 2",new ArrayList<>(Arrays.asList(2,0,5)));
@@ -93,13 +93,13 @@ public class NormalizerUtilityTest {
     }
 
     /*
-    Method Name : SevenPeople()
+    Method Name : testSevenPeople()
     Description : Method for testing normalizerUtility for 7 people.
     Parameters : None.
     Return Value : None.
      */
     @Test
-    public void SevenPeople() throws Exception {
+    public void testSevenPeople() throws Exception {
         Map<String, List<Integer>> mymap = new HashMap<>();
         mymap.put("Person 1",new ArrayList<>(Arrays.asList(4,3,5)));
         mymap.put("Person 2",new ArrayList<>(Arrays.asList(2,0,5)));
