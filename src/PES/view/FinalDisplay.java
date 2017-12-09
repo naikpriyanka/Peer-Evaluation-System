@@ -42,7 +42,7 @@ public class FinalDisplay {
     public void start() {
         //Create the frame
         JFrame frame = new JFrame("Evaluation");
-        frame.setSize(500, 240);
+        frame.setSize(500, 300);
         frame.setResizable(false);
         frame.setLayout(null);
 
