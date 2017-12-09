@@ -12,6 +12,7 @@ import static org.junit.Assert.assertEquals;
  * Class for testing NormalizerUtility class.
  * */
 public class NormalizerUtilityTest {
+    
     /*
     Method Name : testZeroScores()
     Description : Method for testing normalizerUtility for all zero scores.

@@ -3,6 +3,7 @@ package PES.view;
 import javax.swing.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+
 /*
  * Class for Starting Window of Peer Evaluation System where the user is asked for number of team members
  * and if scores have been previously entered.
@@ -95,6 +96,7 @@ public class PeerEvaluation {
         //Action listener to the submit button
         submitButton.addActionListener(new SubmitButtonListener());
     }
+
     /*
     Event Handler class for Submit button.
     */

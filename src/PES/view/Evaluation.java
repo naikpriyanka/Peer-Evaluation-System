@@ -127,6 +127,7 @@ public class Evaluation {
         //Add an action listener to submit button
         submitButton.addActionListener(new SubmitButtonListener());
     }
+
     /*
     Event Handler class for Submit button.
     */
@@ -164,6 +165,7 @@ public class Evaluation {
             }
         }
     }
+
     /*
     Method Name : createRawScoreTable()
     Description : Creates a table based on the number of team members and initial raw score data.
@@ -180,6 +182,7 @@ public class Evaluation {
                 }
             };
     }
+
     /*
     Method Name : getRawScores()
     Description : Method to receive the scores entered by the user/pre-filled in the GUI and returns them as a Map.
@@ -228,6 +231,7 @@ public class Evaluation {
     Parameters :  List<String> names (Predefined List of Names).
     Return Value : String[][] (String array containing names and their scores)
      */
+
     private String[][] generateScores(List<String> names) {
         String[][] rawScoresMap = new String[memberCount][4];
 
