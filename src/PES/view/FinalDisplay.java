@@ -27,7 +27,7 @@ public class FinalDisplay {
      */
     public void start() {
         //Create the frame
-        JFrame frame = new JFrame("Evaluation");
+        JFrame frame = new JFrame("Normalized Scores");
         frame.setSize(500, 300);
         frame.setResizable(false);
         frame.setLayout(null);
