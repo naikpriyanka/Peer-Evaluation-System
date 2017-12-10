@@ -1,3 +1,5 @@
 ~/.DStore
 .idea/*
 out/*
+bin/*
+.project

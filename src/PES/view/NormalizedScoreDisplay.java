@@ -5,7 +5,7 @@ import javax.swing.table.JTableHeader;
 import java.awt.*;
 import java.util.Map;
 /*
- * Class for Final UserInitialInput Window where Normalized scores are displayed.
+ * Class for Final Peer Evaluation Window where Normalized scores are displayed.
  */
 public class NormalizedScoreDisplay {
     private Map<String, Float> normalizedScores;
@@ -22,7 +22,7 @@ public class NormalizedScoreDisplay {
 
     /*
     Method Name : start()
-    Description : Initial method of program flow. Creates the window layout for Final UserInitialInput screen.
+    Description : Initial method of program flow. Creates the window layout for Final Peer and Self Evaluation screen.
     Parameters : None.
     Return Value : None.
      */
