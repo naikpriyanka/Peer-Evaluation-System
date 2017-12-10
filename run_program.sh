@@ -11,4 +11,4 @@ javac -sourcepath PES/util/*.class ../src/PES/view/*.java;
 
 mv ../src/PES/view/*.class PES/view;
 
-java PES.view.PeerEvaluation;
+java PES.view.PeerAndSelfEvaluation;
