@@ -13,7 +13,7 @@ public class NormalizedScoreDisplay {
     /*
     Method Name : NormalizedScoreDisplay()
     Description : Constructor method to initialize class variables.
-    Parameters : Map<String, Float> normalizedScores    Return Value : Map<String, Float> (Map with key as name of team members and value as final normalized scores for every team member).
+    Parameters : Map<String, Float> normalizedScores (Map with key as name of team members and value as final normalized scores for every team member).
     Return Value : instance of the class.
     */
     public NormalizedScoreDisplay(Map<String, Float> normalizedScores) {
