@@ -145,14 +145,10 @@ public class Evaluation {
             */
             Map<String, List<Integer>> rawScoresMap = getRawScores(table);
 
-            //Check if the user has entered valid scores for all the users
-            //If it is valid then only proceed to displaying of normalised scores
+            /*Check if the user has entered valid scores for all the users.
+            If it is valid then only proceed to displaying of normalised scores
+            */
             if(!rawScoresMap.isEmpty() && memberCount == rawScoresMap.size()) {
-                //For debugging purposes
-                for (String key : rawScoresMap.keySet()) {
-                    System.out.println(key + " " + rawScoresMap.get(key));
-                }
-
                 Map<String, Float> normalizedScoresMap = NormalizerUtility.normalize(rawScoresMap);
 
                 //Close the current screen
